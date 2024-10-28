@@ -31,11 +31,10 @@ groupmates = [(225790978, "Алексеев Владислав Евгеньев�
               (206038535, "Полюбин Арсений Игоревич"),
               (178728261, "Филатова Лада Вячеславовна")]
 
-betweenness_centrality = nx.betweenness_centrality(G)
-closeness_centrality = nx.closeness_centrality(G)
+betweenness_centrality = nx.betweenness_centrality(G, k=len(groupmates) * 2)
 eigenvector_centrality = nx.eigenvector_centrality(G)
 for groupmate in groupmates:
     print(f"Центральность по посредничеству для человека {groupmate[1]} (id={groupmate[0]}): {betweenness_centrality[groupmate[0]]}")
-    print(f"Центральность по близости для человека {groupmate[1]} (id={groupmate[0]}): {closeness_centrality[groupmate[0]]}")
+    print(f"Центральность по близости для человека {groupmate[1]} (id={groupmate[0]}): {nx.closeness_centrality(G, u=groupmate[0])}")
     print(f"Центральность по собственному вектору для человека {groupmate[1]} (id={groupmate[0]}): {eigenvector_centrality[groupmate[0]]}")
     print()
